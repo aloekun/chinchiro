@@ -1,10 +1,11 @@
 name: Unittest
-on: pull_request:
-    branvhes:
-        - main
+on:
+    pull_request:
+        branches:
+            - main
 jobs:
     unittest:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - run: echo "Success"
+            - run: echo "Success "
