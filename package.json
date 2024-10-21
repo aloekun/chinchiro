@@ -1,1 +1,12 @@
-{}
+{
+    "name": "chinchiro",
+    "version": "0.1.0",
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^27.0.0",
+        "ts-jest": "^27.0.0",
+        "@types/jest": "^27.0.0"
+    }
+}
