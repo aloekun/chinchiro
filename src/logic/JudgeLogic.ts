@@ -1,22 +1,33 @@
-import { RollEnum } from "../types/RollEnum.ts"
+import { RollEnum } from "../types/RollEnum"
+
+export enum ErrorJudge {
+  NONE = 0,
+  DICE_NUM_NOT_MUCH = 1,
+};
+
 /**
  * サイコロの出目の配列を受け取り、役を返す
  * 戻り値は役と目の値の配列。アラシや2つの目が一致した場合の目の大きさは、2つ目の要素で返す
  * 一二三や四五六がベタ書きの配列との比較なので、サイコロの出目の最大値を変更するなら要修正
  */
-export const judgeRoll = (dices: number[]): [RollEnum, number] => {
+export const judgeRoll = (dices: number[]): [RollEnum, number, ErrorJudge] => {
+    if (dices.length != 3) {
+      // 入力のサイコロ不足
+      return [RollEnum.NONE, 0, ErrorJudge.DICE_NUM_NOT_MUCH];
+    }
+
     // ヒフミか
     const hifumiRolls: number[] = [1, 2, 3];
     const hifumi: boolean = isArrayEqual(dices, hifumiRolls);
     if (hifumi) {
-      return [RollEnum.HIFUMI, 0];
+      return [RollEnum.HIFUMI, 0, ErrorJudge.NONE];
     }
 
     // シゴロか
     const shigoroRolls: number[] = [4, 5, 6];
     const shigoro: boolean = isArrayEqual(dices, shigoroRolls);
     if (shigoro) {
-      return [RollEnum.SHIGORO, 0];
+      return [RollEnum.SHIGORO, 0, ErrorJudge.NONE];
     }
 
     // アラシか
@@ -26,9 +37,9 @@ export const judgeRoll = (dices: number[]): [RollEnum, number] => {
     // ピンゾロか
     const pinzoro: boolean = arashi && dices[0] == 1;
     if (pinzoro) {
-      return [RollEnum.PINZORO, 0];
+      return [RollEnum.PINZORO, 0, ErrorJudge.NONE];
     } else if (arashi) {
-      return [RollEnum.ARASHI, dices[0]];
+      return [RollEnum.ARASHI, dices[0], ErrorJudge.NONE];
     }
 
     // 2つの目が一致、残り1つの目が役
@@ -41,11 +52,11 @@ export const judgeRoll = (dices: number[]): [RollEnum, number] => {
       diceOnlyOneRoll = dices[1];
     }
     if (diceOnlyOneRoll > 0) {
-      return [RollEnum.ONLY_ONE_ROLL, diceOnlyOneRoll];
+      return [RollEnum.ONLY_ONE_ROLL, diceOnlyOneRoll, ErrorJudge.NONE];
     }
 
     // 役無し
-    return [RollEnum.NONE, 0];
+    return [RollEnum.NONE, 0, ErrorJudge.NONE];
   };
   // 数値配列の一致判定
   const isArrayEqual = (arr1: number[], arr2: number[]): boolean => {
