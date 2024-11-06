@@ -4,9 +4,11 @@ import { DiceRoller } from './components/DiceRoller';
 import { DiceResult } from './components/DiceResult';
 import { judgeRoll } from "./logic/JudgeLogic";
 import { getRollStr, RollEnum } from "./types/RollEnum";
+import { User } from "./logic/User"
 
 export const App = () => {
   const [point, setPoint] = useState<number>(1000);
+  const user = new User(1000);
   const [gainPoint, setGainPoint] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<Array<number>>([0, 0, 0]);
   const [role, setRole] = useState<string>('なし');
@@ -14,6 +16,7 @@ export const App = () => {
 
   const onClickClear = (): void => {
     setPoint(1000);
+    user.refreshPoint();
     setGainPoint(0);
     setDiceRolls([0, 0, 0]);
     setRole('なし');
@@ -26,6 +29,8 @@ export const App = () => {
     const decreasePoint: number = calcDecreasePoint();
     const gainPoint: number = calcGainPoint(roll);
     const resultPoint: number = gainPoint - decreasePoint;
+    user.payCost(decreasePoint);
+    user.gainPoint(gainPoint);
     setDiceRolls(dices);
     setRole(rollStr);
     setGainPoint(resultPoint);
