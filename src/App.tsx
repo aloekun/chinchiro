@@ -23,15 +23,21 @@ export const App = () => {
     alert('リセットしました');
   };
 
-  const onClickPlay = (dices: number[]) => {
-    const [roll, dice] = judgeRoll(dices);
+  const onClickPlay = () => {
+    // TODO: 定数処理をまとめる
+    const diceCount: number = 3;
+    const diceRoles: number = 6;
+    user.rollDices(diceCount, diceRoles);
+    const dices = user.getDices();
+    const [roll, dice, errorJudge] = judgeRoll(dices);
     const rollStr: string = getRollStr(roll);
+    setDiceRolls(dices);
+
     const decreasePoint: number = calcDecreasePoint();
     const gainPoint: number = calcGainPoint(roll);
     const resultPoint: number = gainPoint - decreasePoint;
     user.payCost(decreasePoint);
     user.gainPoint(gainPoint);
-    setDiceRolls(dices);
     setRole(rollStr);
     setGainPoint(resultPoint);
     setPoint(point + resultPoint);
