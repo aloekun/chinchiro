@@ -1,26 +1,22 @@
 import { FC } from 'react';
 
 type Props = {
-  onClickPlay: (dices: number[]) => void;
+  onClickPlay: () => void;
+};
+
+export const rollDices = (diceCount: number, diceRoles: number): number[] => {
+  const dices: number[] = [];
+  for (let i: number = 0; i < diceCount; i++) {
+    const dice = Math.floor(Math.random() * diceRoles + 1);
+    dices.push(dice);
+  }
+  dices.sort((a, b) => a - b);
+  return dices;
 };
 
 export const DiceRoller: FC<Props> = ({ onClickPlay }) => {
-  const DICES: number = 3;
-  const ROLE: number = 6;
-
-  const rollDices = (): number[] => {
-    const dices: number[] = [];
-    for (let i: number = 0; i < DICES; i++) {
-      const dice = Math.floor(Math.random() * ROLE + 1);
-      dices.push(dice);
-    }
-    dices.sort((a, b) => a - b);
-    return dices;
-  };
-
   const handleClick = () => {
-    const dices = rollDices();
-    onClickPlay(dices);
+    onClickPlay();
   };
 
   return <button onClick={handleClick}>サイコロを振る</button>;

@@ -1,13 +1,19 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen, fireEvent } from '@testing-library/react';
-import { DiceRoller } from '../DiceRoller';
+// import { render, screen, fireEvent } from '@testing-library/react';
+import { rollDices } from '../DiceRoller';
 
-test('「サイコロを振る」をクリックするとonClickPlayが呼ばれる', () => {
-  const onClickPlay = jest.fn();
-  render(<DiceRoller onClickPlay={onClickPlay} />);
-  const button = screen.getByText('サイコロを振る');
-  fireEvent.click(button);
-  expect(onClickPlay).toHaveBeenCalled();
+test("3個のダイスを振る", () => {
+  const diceCount:number = 3;
+  const diceRoles:number = 6;
+  const rolls = rollDices(diceCount, diceRoles);
+
+  expect(rolls.length).toBe(diceCount);
+  expect(rolls[0]).toBeGreaterThanOrEqual(1);
+  expect(rolls[0]).toBeLessThanOrEqual(diceRoles);
+  expect(rolls[1]).toBeGreaterThanOrEqual(1);
+  expect(rolls[1]).toBeLessThanOrEqual(diceRoles);
+  expect(rolls[2]).toBeGreaterThanOrEqual(1);
+  expect(rolls[2]).toBeLessThanOrEqual(diceRoles);
 });
