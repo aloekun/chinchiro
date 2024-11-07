@@ -1,28 +1,40 @@
+import { rollDices } from "../components/DiceRoller";
+
 export class User {
     private pointDefault: number;
+    private point: number;
+    private dices: number[];
 
-    constructor(
-        private point: number
-    ) {
+    constructor(point: number) {
+        this.point = point;
         this.pointDefault = point;
+        this.dices = [];
     }
 
-    getNumber(): number {
+    public getNumber(): number {
         return this.point;
     }
 
-    gainPoint(point: number) {
+    public gainPoint(point: number) {
         this.point += point;
     }
 
-    payCost(point: number) {
+    public payCost(point: number) {
         if (this.point < point) {
             throw new EvalError("Point is less");
         }
         this.point -= point;
     }
 
-    refreshPoint() {
+    public refreshPoint() {
         this.point = this.pointDefault;
+    }
+
+    public getDices(): number[] {
+        return this.dices;
+    }
+
+    public rollDices(diceCount: number, diceRoles: number) {
+        this.dices = rollDices(diceCount, diceRoles);
     }
 }
