@@ -4,10 +4,12 @@ type Props = {
   onClickPlay: () => void;
 };
 
-export const rollDices = (diceCount: number, diceRoles: number): number[] => {
+export const rollDices = (): number[] => {
+  const DICE_COUNT:number = 3;
+  const DICE_ROLES:number = 6;
   const dices: number[] = [];
-  for (let i: number = 0; i < diceCount; i++) {
-    const dice = Math.floor(Math.random() * diceRoles + 1);
+  for (let i: number = 0; i < DICE_COUNT; i++) {
+    const dice = Math.floor(Math.random() * DICE_ROLES + 1);
     dices.push(dice);
   }
   dices.sort((a, b) => a - b);

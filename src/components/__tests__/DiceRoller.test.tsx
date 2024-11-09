@@ -7,7 +7,7 @@ import { rollDices } from '../DiceRoller';
 test("3個のダイスを振る", () => {
   const diceCount:number = 3;
   const diceRoles:number = 6;
-  const rolls = rollDices(diceCount, diceRoles);
+  const rolls = rollDices();
 
   expect(rolls.length).toBe(diceCount);
   expect(rolls[0]).toBeGreaterThanOrEqual(1);

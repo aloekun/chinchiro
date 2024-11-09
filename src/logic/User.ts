@@ -34,7 +34,7 @@ export class User {
         return this.dices;
     }
 
-    public rollDices(diceCount: number, diceRoles: number) {
-        this.dices = rollDices(diceCount, diceRoles);
+    public rollDices() {
+        this.dices = rollDices();
     }
 }

@@ -24,10 +24,7 @@ export const App = () => {
   };
 
   const onClickPlay = () => {
-    // TODO: 定数処理をまとめる
-    const diceCount: number = 3;
-    const diceRoles: number = 6;
-    user.rollDices(diceCount, diceRoles);
+    user.rollDices();
     const dices = user.getDices();
     const [roll, dice, errorJudge] = judgeRoll(dices);
     const rollStr: string = getRollStr(roll);
