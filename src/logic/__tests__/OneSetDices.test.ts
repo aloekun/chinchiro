@@ -10,6 +10,6 @@ test("1回分のダイスを振って、役が出る", () => {
     const role = sut.getRole();
     const onlyOneNumber = sut.getOnlyOneNumber();
     expect(dices.length).toBe(3);
-    expect(role).toBeGreaterThanOrEqual(RollEnum.NONE);
+    expect(role).toBeGreaterThan(RollEnum.NONE);
     expect(onlyOneNumber).toBeGreaterThanOrEqual(0);
 });

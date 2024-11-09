@@ -49,8 +49,6 @@ export const App = () => {
   // 獲得ポイントの計算
   const calcGainPoint = (roll: RollEnum): number => {
     switch (roll) {
-      case RollEnum.NONE:
-        return 0;
       case RollEnum.ONLY_ONE_ROLL:
         return 50;
       case RollEnum.PINZORO:
@@ -61,6 +59,8 @@ export const App = () => {
         return -400;
       case RollEnum.SHIGORO:
         return 100;
+      case RollEnum.MENASHI:
+        return 0;
       default:
         throw Error
     }

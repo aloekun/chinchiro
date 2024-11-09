@@ -21,7 +21,7 @@ export const judgeRoll = (dices: number[]): [RollEnum, number, ErrorJudge] => {
     return [RollEnum.ONLY_ONE_ROLL, diceOnlyOneRoll, ErrorJudge.NONE];
   }
 
-  return [RollEnum.NONE, 0, ErrorJudge.NONE];
+  return [RollEnum.MENASHI, 0, ErrorJudge.NONE];
 };
 
 const getRollType = (dices: number[]): RollEnum => {

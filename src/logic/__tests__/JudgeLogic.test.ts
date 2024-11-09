@@ -49,7 +49,7 @@ test("目無しチェック", () => {
     const [roll, dice, errorJudge] = judgeRoll([1,2,5]);
 
     const rollStr = getRollStr(roll);
-    const targetStr = getRollStr(RollEnum.NONE);
+    const targetStr = getRollStr(RollEnum.MENASHI);
     expect(rollStr).toBe(targetStr);
 });
 
