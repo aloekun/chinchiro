@@ -2,6 +2,11 @@ import { rollDices } from "../components/DiceRoller";
 import { RollEnum } from "../types/RollEnum";
 import { ErrorJudge, judgeRoll } from "./JudgeLogic";
 
+export interface DiceManager {
+    getDices(): number[];
+    getRole(): RollEnum; 
+}
+
 /**
  * ちんちろりん1回分のサイコロ3つの出目と役のセット
  */
