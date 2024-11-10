@@ -1,8 +1,7 @@
-import { rollDices } from "../components/DiceRoller";
 import { RollEnum } from "../types/RollEnum";
-import { OneSetDices } from "./OneSetDices";
+import { DiceManager, OneSetDices } from "./OneSetDices";
 
-export class User {
+export class User implements DiceManager {
     private pointDefault: number;
     private point: number;
     private dices: OneSetDices;
@@ -36,7 +35,7 @@ export class User {
         return this.dices.getDices() ?? [];
     }
 
-    public getRoll(): RollEnum {
+    public getRole(): RollEnum {
         return this.dices.getRole() ?? RollEnum.NONE;
     }
 

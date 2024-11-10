@@ -25,7 +25,7 @@ export const App = () => {
   const onClickPlay = () => {
     user.rollDices();
     const dices = user.getDices();
-    const roll = user.getRoll();
+    const roll = user.getRole();
     const rollStr: string = getRollStr(roll);
     setDiceRolls(dices);
 
