@@ -4,7 +4,8 @@ import { ErrorJudge, judgeRoll } from "./JudgeLogic";
 
 export interface DiceManager {
     getDices(): number[];
-    getRole(): RollEnum; 
+    getRole(): RollEnum;
+    rollDices(): void;
 }
 
 /**
