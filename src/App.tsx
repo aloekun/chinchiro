@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { DiceRoller } from './components/DiceRoller';
 import { DiceResult } from './components/DiceResult';
-import { judgeRoll } from "./logic/JudgeLogic";
 import { getRollStr, RollEnum } from "./types/RollEnum";
 import { User } from "./logic/User"
 
@@ -26,7 +25,7 @@ export const App = () => {
   const onClickPlay = () => {
     user.rollDices();
     const dices = user.getDices();
-    const [roll, dice, errorJudge] = judgeRoll(dices);
+    const roll = user.getRoll();
     const rollStr: string = getRollStr(roll);
     setDiceRolls(dices);
 
