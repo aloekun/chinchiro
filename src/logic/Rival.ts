@@ -15,4 +15,8 @@ export class Rival implements DiceManager {
     public getRole(): RollEnum {
         return this.dices.getRole();
     }
+
+    public rollDices() {
+        this.dices.rollDices();
+    }
 }
