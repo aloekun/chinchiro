@@ -5,6 +5,11 @@ export enum ErrorJudge {
   DICE_NUM_NOT_MUCH = 1,
 };
 
+/**
+ * サイコロの目を3つ受け取って、役・2つ被りなら残り1つの目・エラー情報を返す
+ * @param dices 
+ * @returns 
+ */
 export const judgeRole = (dices: number[]): [RoleEnum, number, ErrorJudge] => {
   if (dices.length != 3) {
     return [RoleEnum.NONE, 0, ErrorJudge.DICE_NUM_NOT_MUCH];

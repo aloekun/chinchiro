@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { RoleEnum, getRollStr } from "../../types/RoleEnum"
-import {ErrorJudge, judgeRole} from "../JudgeLogic"
+import {ErrorJudge, judgeRole} from "../JudgeRole"
 
 test("ヒフミチェック", () => {
     const [roll, dice, errorJudge] = judgeRole([1,2,3]);

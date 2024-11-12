@@ -1,6 +1,6 @@
 import { rollDices } from "../components/DiceRoller";
 import { RoleEnum } from "../types/RoleEnum";
-import { ErrorJudge, judgeRole } from "./JudgeLogic";
+import { ErrorJudge, judgeRole } from "./JudgeRole";
 
 export interface DiceManager {
     getDices(): number[];
