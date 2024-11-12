@@ -4,10 +4,12 @@ import { DiceRoller } from './components/DiceRoller';
 import { DiceResult } from './components/DiceResult';
 import { getRollStr, RollEnum } from "./types/RollEnum";
 import { User } from "./logic/User"
+import { Rival } from './logic/Rival';
 
 export const App = () => {
   const [point, setPoint] = useState<number>(1000);
   const user = new User(1000);
+  const rival = new Rival();
   const [gainPoint, setGainPoint] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<Array<number>>([0, 0, 0]);
   const [role, setRole] = useState<string>('なし');
@@ -28,6 +30,18 @@ export const App = () => {
     const role = user.getRole();
     const roleStr: string = getRollStr(role);
     setDiceRolls(dices);
+
+    rival.rollDices();
+    const dicesRival = rival.getDices();
+    const roleRival = rival.getRole();
+    const roleRivalStr: string = getRollStr(roleRival);
+    alert(
+      `ダイスの目： ${dices.join(
+        ','
+      )}, 役： ${roleStr}, ダイスの目： ${dicesRival.join(
+        ','
+      )}, 役： ${roleRivalStr}`
+    );
 
     const decreasePoint: number = calcDecreasePoint();
     const gainPoint: number = calcGainPoint(role);
