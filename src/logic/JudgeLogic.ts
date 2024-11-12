@@ -1,47 +1,47 @@
-import { RollEnum } from "../types/RollEnum";
+import { RoleEnum } from "../types/RollEnum";
 
 export enum ErrorJudge {
   NONE = 0,
   DICE_NUM_NOT_MUCH = 1,
 };
 
-export const judgeRole = (dices: number[]): [RollEnum, number, ErrorJudge] => {
+export const judgeRole = (dices: number[]): [RoleEnum, number, ErrorJudge] => {
   if (dices.length != 3) {
-    return [RollEnum.NONE, 0, ErrorJudge.DICE_NUM_NOT_MUCH];
+    return [RoleEnum.NONE, 0, ErrorJudge.DICE_NUM_NOT_MUCH];
   }
 
   const rollType = getRollType(dices);
   const diceOnlyOneRoll = getOnlyOneRoll(dices);
 
-  if (rollType !== RollEnum.NONE) {
+  if (rollType !== RoleEnum.NONE) {
     return [rollType, 0, ErrorJudge.NONE];
   }
 
   if (diceOnlyOneRoll > 0) {
-    return [RollEnum.ONLY_ONE_ROLL, diceOnlyOneRoll, ErrorJudge.NONE];
+    return [RoleEnum.ONLY_ONE_ROLL, diceOnlyOneRoll, ErrorJudge.NONE];
   }
 
-  return [RollEnum.MENASHI, 0, ErrorJudge.NONE];
+  return [RoleEnum.MENASHI, 0, ErrorJudge.NONE];
 };
 
-const getRollType = (dices: number[]): RollEnum => {
+const getRollType = (dices: number[]): RoleEnum => {
   if (isHifumi(dices)) {
-    return RollEnum.HIFUMI;
+    return RoleEnum.HIFUMI;
   }
 
   if (isShigoro(dices)) {
-    return RollEnum.SHIGORO;
+    return RoleEnum.SHIGORO;
   }
 
   if (isPinzoro(dices)) {
-    return RollEnum.PINZORO;
+    return RoleEnum.PINZORO;
   }
 
   if (isArashi(dices)) {
-    return RollEnum.ARASHI;
+    return RoleEnum.ARASHI;
   }
 
-  return RollEnum.NONE;
+  return RoleEnum.NONE;
 };
 
 const isHifumi = (dices: number[]): boolean => {

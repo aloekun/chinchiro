@@ -1,4 +1,4 @@
-export enum RollEnum { // 役
+export enum RoleEnum { // 役
   NONE = 0,
   ONLY_ONE_ROLL = 1,
   PINZORO = 2,
@@ -9,15 +9,15 @@ export enum RollEnum { // 役
 };
 
 // 役の値から名称を取得
-export const getRollStr = (roll: RollEnum): string => {
-  const rollStrings: { [key in RollEnum]: string } = {
-    [RollEnum.NONE]: '未確定',
-    [RollEnum.ONLY_ONE_ROLL]: '2つ一致、1つ残り',
-    [RollEnum.PINZORO]: 'ピンゾロ',
-    [RollEnum.ARASHI]: 'アラシ',
-    [RollEnum.HIFUMI]: 'ヒフミ',
-    [RollEnum.SHIGORO]: 'シゴロ',
-    [RollEnum.MENASHI]: '目無し',
+export const getRollStr = (roll: RoleEnum): string => {
+  const rollStrings: { [key in RoleEnum]: string } = {
+    [RoleEnum.NONE]: '未確定',
+    [RoleEnum.ONLY_ONE_ROLL]: '2つ一致、1つ残り',
+    [RoleEnum.PINZORO]: 'ピンゾロ',
+    [RoleEnum.ARASHI]: 'アラシ',
+    [RoleEnum.HIFUMI]: 'ヒフミ',
+    [RoleEnum.SHIGORO]: 'シゴロ',
+    [RoleEnum.MENASHI]: '目無し',
   };
 
   if (roll in rollStrings) {

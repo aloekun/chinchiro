@@ -1,10 +1,10 @@
 import { rollDices } from "../components/DiceRoller";
-import { RollEnum } from "../types/RollEnum";
+import { RoleEnum } from "../types/RollEnum";
 import { ErrorJudge, judgeRole } from "./JudgeLogic";
 
 export interface DiceManager {
     getDices(): number[];
-    getRole(): RollEnum;
+    getRole(): RoleEnum;
     rollDices(): void;
 }
 
@@ -18,7 +18,7 @@ export class OneSetDices {
 
     constructor() {
         this.dices = [];
-        this.role = RollEnum.NONE;
+        this.role = RoleEnum.NONE;
         this.onlyOneNumber = 0;
     }
 

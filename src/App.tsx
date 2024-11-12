@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { DiceRoller } from './components/DiceRoller';
 import { DiceResult } from './components/DiceResult';
-import { getRollStr, RollEnum } from "./types/RollEnum";
+import { getRollStr, RoleEnum } from "./types/RollEnum";
 import { User } from "./logic/User"
 import { Rival } from './logic/Rival';
 
@@ -60,19 +60,19 @@ export const App = () => {
   };
 
   // 獲得ポイントの計算
-  const calcGainPoint = (roll: RollEnum): number => {
+  const calcGainPoint = (roll: RoleEnum): number => {
     switch (roll) {
-      case RollEnum.ONLY_ONE_ROLL:
+      case RoleEnum.ONLY_ONE_ROLL:
         return 50;
-      case RollEnum.PINZORO:
+      case RoleEnum.PINZORO:
         return 500;
-      case RollEnum.ARASHI:
+      case RoleEnum.ARASHI:
         return 300;
-      case RollEnum.HIFUMI:
+      case RoleEnum.HIFUMI:
         return -400;
-      case RollEnum.SHIGORO:
+      case RoleEnum.SHIGORO:
         return 100;
-      case RollEnum.MENASHI:
+      case RoleEnum.MENASHI:
         return 0;
       default:
         throw Error

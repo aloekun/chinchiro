@@ -1,4 +1,4 @@
-import { RollEnum } from '../types/RollEnum';
+import { RoleEnum } from '../types/RollEnum';
 import { DiceManager, OneSetDices } from './OneSetDices';
 
 export class Rival implements DiceManager {
@@ -12,7 +12,7 @@ export class Rival implements DiceManager {
         return this.dices.getDices();
     }
 
-    public getRole(): RollEnum {
+    public getRole(): RoleEnum {
         return this.dices.getRole();
     }
 
