@@ -2,10 +2,10 @@
  * @jest-environment jsdom
  */
 import { RollEnum, getRollStr } from "../../types/RollEnum"
-import {ErrorJudge, judgeRoll} from "../JudgeLogic"
+import {ErrorJudge, judgeRole} from "../JudgeLogic"
 
 test("ヒフミチェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([1,2,3]);
+    const [roll, dice, errorJudge] = judgeRole([1,2,3]);
 
     const rollStr = getRollStr(roll);
     const targetStr = getRollStr(RollEnum.HIFUMI);
@@ -13,7 +13,7 @@ test("ヒフミチェック", () => {
 });
 
 test("シゴロチェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([4,5,6]);
+    const [roll, dice, errorJudge] = judgeRole([4,5,6]);
 
     const rollStr = getRollStr(roll);
     const targetStr = getRollStr(RollEnum.SHIGORO);
@@ -21,7 +21,7 @@ test("シゴロチェック", () => {
 });
 
 test("アラシチェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([3,3,3]);
+    const [roll, dice, errorJudge] = judgeRole([3,3,3]);
 
     const rollStr = getRollStr(roll);
     const targetStr = getRollStr(RollEnum.ARASHI);
@@ -29,7 +29,7 @@ test("アラシチェック", () => {
 });
 
 test("ピンゾロチェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([1,1,1]);
+    const [roll, dice, errorJudge] = judgeRole([1,1,1]);
 
     const rollStr = getRollStr(roll);
     const targetStr = getRollStr(RollEnum.PINZORO);
@@ -37,7 +37,7 @@ test("ピンゾロチェック", () => {
 });
 
 test("2つの目が同じ、残り1つチェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([2,2,5]);
+    const [roll, dice, errorJudge] = judgeRole([2,2,5]);
 
     const rollStr = getRollStr(roll);
     const targetStr = getRollStr(RollEnum.ONLY_ONE_ROLL);
@@ -46,7 +46,7 @@ test("2つの目が同じ、残り1つチェック", () => {
 });
 
 test("目無しチェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([1,2,5]);
+    const [roll, dice, errorJudge] = judgeRole([1,2,5]);
 
     const rollStr = getRollStr(roll);
     const targetStr = getRollStr(RollEnum.MENASHI);
@@ -54,13 +54,13 @@ test("目無しチェック", () => {
 });
 
 test("ダイス不足チェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([1,1]);
+    const [roll, dice, errorJudge] = judgeRole([1,1]);
 
     expect(errorJudge).toBe(ErrorJudge.DICE_NUM_NOT_MUCH);
 });
 
 test("ダイス過剰チェック", () => {
-    const [roll, dice, errorJudge] = judgeRoll([1,2,3,4,5,6]);
+    const [roll, dice, errorJudge] = judgeRole([1,2,3,4,5,6]);
 
     expect(errorJudge).toBe(ErrorJudge.DICE_NUM_NOT_MUCH);
 });

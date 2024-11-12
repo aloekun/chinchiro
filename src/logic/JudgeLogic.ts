@@ -5,7 +5,7 @@ export enum ErrorJudge {
   DICE_NUM_NOT_MUCH = 1,
 };
 
-export const judgeRoll = (dices: number[]): [RollEnum, number, ErrorJudge] => {
+export const judgeRole = (dices: number[]): [RollEnum, number, ErrorJudge] => {
   if (dices.length != 3) {
     return [RollEnum.NONE, 0, ErrorJudge.DICE_NUM_NOT_MUCH];
   }

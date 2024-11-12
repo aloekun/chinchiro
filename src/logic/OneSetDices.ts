@@ -1,6 +1,6 @@
 import { rollDices } from "../components/DiceRoller";
 import { RollEnum } from "../types/RollEnum";
-import { ErrorJudge, judgeRoll } from "./JudgeLogic";
+import { ErrorJudge, judgeRole } from "./JudgeLogic";
 
 export interface DiceManager {
     getDices(): number[];
@@ -40,6 +40,6 @@ export class OneSetDices {
     public rollDices() {
         this.dices = rollDices();
         let errorJudge:ErrorJudge = ErrorJudge.NONE;
-        [this.role, this.onlyOneNumber, errorJudge] = judgeRoll(this.dices);
+        [this.role, this.onlyOneNumber, errorJudge] = judgeRole(this.dices);
     }
 }

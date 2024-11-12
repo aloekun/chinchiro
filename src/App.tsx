@@ -25,16 +25,16 @@ export const App = () => {
   const onClickPlay = () => {
     user.rollDices();
     const dices = user.getDices();
-    const roll = user.getRole();
-    const rollStr: string = getRollStr(roll);
+    const role = user.getRole();
+    const roleStr: string = getRollStr(role);
     setDiceRolls(dices);
 
     const decreasePoint: number = calcDecreasePoint();
-    const gainPoint: number = calcGainPoint(roll);
+    const gainPoint: number = calcGainPoint(role);
     const resultPoint: number = gainPoint - decreasePoint;
     user.payCost(decreasePoint);
     user.gainPoint(gainPoint);
-    setRole(rollStr);
+    setRole(roleStr);
     setGainPoint(resultPoint);
     setPoint(point + resultPoint);
     // alert(`ダイスの目： ${dices.join(',')}, 役： ${rollStr}, 目： ${dice}\n gainPoint:${gainPoint}, decreasePoint:${decreasePoint}, resultPoint:${resultPoint}`);
