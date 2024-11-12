@@ -1,4 +1,4 @@
-import { RoleEnum } from "../types/RollEnum";
+import { RoleEnum } from "../types/RoleEnum";
 import { DiceManager, OneSetDices } from "./OneSetDices";
 
 export class User implements DiceManager {

@@ -1,5 +1,5 @@
 import { rollDices } from "../components/DiceRoller";
-import { RoleEnum } from "../types/RollEnum";
+import { RoleEnum } from "../types/RoleEnum";
 import { ErrorJudge, judgeRole } from "./JudgeLogic";
 
 export interface DiceManager {

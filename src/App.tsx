@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { DiceRoller } from './components/DiceRoller';
 import { DiceResult } from './components/DiceResult';
-import { getRollStr, RoleEnum } from "./types/RollEnum";
+import { getRollStr, RoleEnum } from "./types/RoleEnum";
 import { User } from "./logic/User"
 import { Rival } from './logic/Rival';
 

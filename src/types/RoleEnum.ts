@@ -1,11 +1,11 @@
 export enum RoleEnum { // 役
   NONE = 0,
-  ONLY_ONE_ROLL = 1,
-  PINZORO = 2,
-  ARASHI = 3,
-  HIFUMI = 4,
-  SHIGORO = 5,
-  MENASHI = 6,
+  HIFUMI = 1,
+  MENASHI = 2,
+  ONLY_ONE_ROLL = 3,
+  SHIGORO = 4,
+  ARASHI = 5,
+  PINZORO = 6,
 };
 
 // 役の値から名称を取得

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { RoleEnum, getRollStr } from "../../types/RollEnum"
+import { RoleEnum, getRollStr } from "../../types/RoleEnum"
 import {ErrorJudge, judgeRole} from "../JudgeLogic"
 
 test("ヒフミチェック", () => {

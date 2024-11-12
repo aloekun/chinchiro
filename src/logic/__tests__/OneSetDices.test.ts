@@ -1,4 +1,4 @@
-import { RoleEnum } from "../../types/RollEnum";
+import { RoleEnum } from "../../types/RoleEnum";
 import { OneSetDices } from "../OneSetDices";
 
 test("1回分のダイスを振って、役が出る", () => {

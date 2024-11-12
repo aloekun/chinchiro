@@ -1,4 +1,4 @@
-import { RoleEnum } from "../types/RollEnum";
+import { RoleEnum } from "../types/RoleEnum";
 
 export enum ErrorJudge {
   NONE = 0,
