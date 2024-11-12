@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { DiceRoller } from './components/DiceRoller';
 import { DiceResult } from './components/DiceResult';
-import { getRollStr, RoleEnum } from "./types/RoleEnum";
+import { getRoleStr, RoleEnum } from "./types/RoleEnum";
 import { User } from "./logic/User"
 import { Rival } from './logic/Rival';
 
@@ -28,13 +28,13 @@ export const App = () => {
     user.rollDices();
     const dices = user.getDices();
     const role = user.getRole();
-    const roleStr: string = getRollStr(role);
+    const roleStr: string = getRoleStr(role);
     setDiceRolls(dices);
 
     rival.rollDices();
     const dicesRival = rival.getDices();
     const roleRival = rival.getRole();
-    const roleRivalStr: string = getRollStr(roleRival);
+    const roleRivalStr: string = getRoleStr(roleRival);
     alert(
       `ダイスの目： ${dices.join(
         ','

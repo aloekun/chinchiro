@@ -9,7 +9,7 @@ export enum RoleEnum { // 役
 };
 
 // 役の値から名称を取得
-export const getRollStr = (roll: RoleEnum): string => {
+export const getRoleStr = (roll: RoleEnum): string => {
   const rollStrings: { [key in RoleEnum]: string } = {
     [RoleEnum.NONE]: '未確定',
     [RoleEnum.ONLY_ONE_ROLL]: '2つ一致、1つ残り',
