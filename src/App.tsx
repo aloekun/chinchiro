@@ -5,6 +5,8 @@ import { DiceResult } from './components/DiceResult';
 import { getRoleStr, RoleEnum } from "./types/RoleEnum";
 import { User } from "./logic/User"
 import { Rival } from './logic/Rival';
+import { compareRole } from './logic/CompareRole';
+import { getResultStr } from './types/RollResult';
 
 export const App = () => {
   const [point, setPoint] = useState<number>(1000);
@@ -35,12 +37,16 @@ export const App = () => {
     const dicesRival = rival.getDices();
     const roleRival = rival.getRole();
     const roleRivalStr: string = getRoleStr(roleRival);
+
+    const resultRole = compareRole(role, roleRival);
+    const resultRoleStr = getResultStr(resultRole);
+
     alert(
-      `ダイスの目： ${dices.join(
+      `ダイスの目(自分): ${dices.join(
         ','
-      )}, 役： ${roleStr}, ダイスの目： ${dicesRival.join(
+      )}, 役： ${roleStr}, ダイスの目(相手): ${dicesRival.join(
         ','
-      )}, 役： ${roleRivalStr}`
+      )}, 役： ${roleRivalStr}, 勝敗: ${resultRoleStr}`
     );
 
     const decreasePoint: number = calcDecreasePoint();
