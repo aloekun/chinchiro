@@ -1,15 +1,20 @@
 import { RoleEnum } from "../types/RoleEnum";
-import { DiceManager, OneSetDices } from "./OneSetDices";
+import { IDice } from "./IDices";
+import { DiceManager } from "./OneSetDices";
 
 export class User implements DiceManager {
     private pointDefault: number;
     private point: number;
-    private dices: OneSetDices;
+    private dices: IDice;
 
-    constructor(point: number) {
+    constructor(point: number, dices: IDice) {
         this.point = point;
         this.pointDefault = point;
-        this.dices = new OneSetDices();
+
+        if (dices == null) {
+            throw EvalError("not defined interface");
+        }
+        this.dices = dices;
     }
 
     public getNumber(): number {
@@ -32,11 +37,11 @@ export class User implements DiceManager {
     }
 
     public getDices(): number[] {
-        return this.dices.getDices() ?? [];
+        return this.dices.getDices();
     }
 
     public getRole(): RoleEnum {
-        return this.dices.getRole() ?? RoleEnum.NONE;
+        return this.dices.getRole();
     }
 
     public rollDices() {
