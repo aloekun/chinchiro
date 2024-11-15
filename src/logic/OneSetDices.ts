@@ -3,12 +3,6 @@ import { RoleEnum } from "../types/RoleEnum";
 import { IDice } from "./IDices";
 import { ErrorJudge, judgeRole } from "./JudgeRole";
 
-export interface DiceManager {
-    getDices(): number[];
-    getRole(): RoleEnum;
-    rollDices(): void;
-}
-
 /**
  * ちんちろりん1回分のサイコロ3つの出目と役のセット
  */

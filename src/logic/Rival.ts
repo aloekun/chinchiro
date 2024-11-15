@@ -1,9 +1,11 @@
 import { RoleEnum } from '../types/RoleEnum';
-import { DiceManager, OneSetDices } from './OneSetDices';
+import { DiceHandler } from './DiceHandler';
+import { OneSetDices } from './OneSetDices';
 
-export class Rival implements DiceManager {
+export class Rival extends DiceHandler {
     private dices: OneSetDices;
     constructor() {
+        super();
         this.dices = new OneSetDices();
         this.dices.rollDices();
     }
