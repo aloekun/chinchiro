@@ -8,10 +8,11 @@ import { Rival } from './logic/Rival';
 import { compareRole } from './logic/CompareRole';
 import { getResultStr } from './types/RollResult';
 import { OneSetDices } from './logic/OneSetDices';
+import { ThreeSetDices } from './logic/ThreeSetDices';
 
 export const App = () => {
   const [point, setPoint] = useState<number>(1000);
-  const user = new User(1000, new OneSetDices());
+  const user = new User(1000, new ThreeSetDices());
   const rival = new Rival();
   const [gainPoint, setGainPoint] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<Array<number>>([0, 0, 0]);
