@@ -5,7 +5,7 @@ import { IDice } from "./IDices";
 export class User extends DiceHandler {
     private pointDefault: number;
     private point: number;
-    private dices: IDice;
+    private readonly dices: IDice;
 
     constructor(point: number, dices: IDice) {
         super();
