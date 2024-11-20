@@ -60,9 +60,7 @@ export class ThreeSetDices implements IDices {
         this.onlyOneNumber = onlyOneNumber;
     }
 
-    public getAllDices() {
-        return this.setDicesList.map((element) => {
-            return element.getDices();
-        })
+    public getAllDiceSet(): OneSetDices[] {
+        return this.setDicesList;
     }
 }

@@ -37,4 +37,8 @@ export class OneSetDices implements IDices {
         let errorJudge:ErrorJudge = ErrorJudge.NONE;
         [this.role, this.onlyOneNumber, errorJudge] = judgeRole(this.dices);
     }
+
+    public getAllDiceSet(): OneSetDices[] {
+        return [this];
+    }
 }

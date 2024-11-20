@@ -48,4 +48,8 @@ export class User extends DiceHandler {
     public rollDices() {
         this.dices.rollDices();
     }
+
+    public getAllDiceSet() {
+        this.dices.getAllDiceSet();
+    }
 }

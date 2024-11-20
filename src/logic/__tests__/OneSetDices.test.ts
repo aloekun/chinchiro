@@ -12,4 +12,8 @@ test("1回分のダイスを振って、役が出る", () => {
     expect(dices.length).toBe(3);
     expect(role).toBeGreaterThan(RoleEnum.NONE);
     expect(onlyOneNumber).toBeGreaterThanOrEqual(0);
+
+    const allDiceSet = sut.getAllDiceSet();
+    expect(allDiceSet[0].getRole()).toBeGreaterThan(RoleEnum.NONE);
+    expect(allDiceSet[0].getDices().length).toBe(3);
 });

@@ -5,4 +5,5 @@ export interface IDices {
     getDices(): number[];
     getRole(): RoleEnum;
     rollDices(): void;
+    getAllDiceSet(): OneSetDices[];
 }
