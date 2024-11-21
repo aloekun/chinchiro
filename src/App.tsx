@@ -2,12 +2,11 @@ import { useState } from 'react';
 
 import { DiceRoller } from './components/DiceRoller';
 import { DiceResult } from './components/DiceResult';
-import { getRoleStr, RoleEnum } from "./types/RoleEnum";
-import { User } from "./logic/User"
+import { getRoleStr, RoleEnum } from './types/RoleEnum';
+import { User } from './logic/User';
 import { Rival } from './logic/Rival';
 import { compareRole } from './logic/CompareRole';
 import { getResultStr } from './types/RollResult';
-import { OneSetDices } from './logic/OneSetDices';
 import { ThreeSetDices } from './logic/ThreeSetDices';
 
 export const App = () => {
@@ -17,6 +16,12 @@ export const App = () => {
   const [gainPoint, setGainPoint] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<Array<number>>([0, 0, 0]);
   const [role, setRole] = useState<string>('なし');
+  const [diceRolls1, setDiceRolls1] = useState<Array<number>>([0, 0, 0]);
+  const [role1, setRole1] = useState<string>('なし');
+  const [diceRolls2, setDiceRolls2] = useState<Array<number>>([0, 0, 0]);
+  const [role2, setRole2] = useState<string>('なし');
+  const [diceRolls3, setDiceRolls3] = useState<Array<number>>([0, 0, 0]);
+  const [role3, setRole3] = useState<string>('なし');
   const [inputPoint, setInputPoint] = useState<number>(0);
 
   const onClickClear = (): void => {
@@ -25,6 +30,12 @@ export const App = () => {
     setGainPoint(0);
     setDiceRolls([0, 0, 0]);
     setRole('なし');
+    setDiceRolls1([0, 0, 0]);
+    setRole1('なし');
+    setDiceRolls2([0, 0, 0]);
+    setRole2('なし');
+    setDiceRolls3([0, 0, 0]);
+    setRole3('なし');
     alert('リセットしました');
   };
 
@@ -34,6 +45,21 @@ export const App = () => {
     const role = user.getRole();
     const roleStr: string = getRoleStr(role);
     setDiceRolls(dices);
+    setRole(roleStr);
+    const allDiceSet = user.getAllDiceSet();
+    console.log(allDiceSet);
+    setDiceRolls1(allDiceSet[0].getDices());
+    setDiceRolls2(allDiceSet[1].getDices());
+    setDiceRolls3(allDiceSet[2].getDices());
+    const role1 = allDiceSet[0].getRole();
+    const role1Str = getRoleStr(role1);
+    setRole1(role1Str);
+    const role2 = allDiceSet[1].getRole();
+    const role2Str = getRoleStr(role2);
+    setRole2(role2Str);
+    const role3 = allDiceSet[2].getRole();
+    const role3Str = getRoleStr(role3);
+    setRole3(role3Str);
 
     rival.rollDices();
     const dicesRival = rival.getDices();
@@ -56,7 +82,6 @@ export const App = () => {
     const resultPoint: number = gainPoint - decreasePoint;
     user.payCost(decreasePoint);
     user.gainPoint(gainPoint);
-    setRole(roleStr);
     setGainPoint(resultPoint);
     setPoint(point + resultPoint);
     // alert(`ダイスの目： ${dices.join(',')}, 役： ${rollStr}, 目： ${dice}\n gainPoint:${gainPoint}, decreasePoint:${decreasePoint}, resultPoint:${resultPoint}`);
@@ -83,10 +108,10 @@ export const App = () => {
       case RoleEnum.MENASHI:
         return 0;
       default:
-        throw Error
+        throw Error;
     }
-  }
-  
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputPoint(Number(event.target.value));
   };
@@ -110,7 +135,12 @@ export const App = () => {
       <DiceRoller onClickPlay={onClickPlay} />
       <br />
       <br />
-      <DiceResult diceRolls={diceRolls} role={role} gainPoint={gainPoint} />
+      <DiceResult diceRolls={diceRolls} role={role} />
+      <div>獲得したポイント：{gainPoint}</div>
+      <br />
+      <DiceResult diceRolls={diceRolls1} role={role1} />
+      <DiceResult diceRolls={diceRolls2} role={role2} />
+      <DiceResult diceRolls={diceRolls3} role={role3} />
     </>
   );
 };
