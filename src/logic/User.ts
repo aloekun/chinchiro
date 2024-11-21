@@ -1,6 +1,7 @@
 import { RoleEnum } from "../types/RoleEnum";
 import { DiceHandler } from "./DiceHandler";
 import { IDices } from "./IDices";
+import { OneSetDices } from "./OneSetDices";
 
 export class User extends DiceHandler {
     private pointDefault: number;
@@ -49,7 +50,7 @@ export class User extends DiceHandler {
         this.dices.rollDices();
     }
 
-    public getAllDiceSet() {
-        this.dices.getAllDiceSet();
+    public getAllDiceSet(): OneSetDices[] {
+        return this.dices.getAllDiceSet();
     }
 }
