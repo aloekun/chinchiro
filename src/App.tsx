@@ -11,45 +11,70 @@ import { ThreeSetDices } from './logic/ThreeSetDices';
 
 export const App = () => {
   const [point, setPoint] = useState<number>(1000);
+  const [inputPoint, setInputPoint] = useState<number>(0);
+
   const user = new User(1000, new ThreeSetDices());
-  const rival = new Rival(new ThreeSetDices());
   const [gainPoint, setGainPoint] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<Array<number>>([0, 0, 0]);
   const [role, setRole] = useState<string>('なし');
   const [allDiceRolls, setAllDiceRolls] = useState<Array<Array<number>>>([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
   const [allRoles, setAllRoles] = useState<Array<string>>(['なし', 'なし', 'なし']);
-  const [inputPoint, setInputPoint] = useState<number>(0);
-
+  
+  const rival = new Rival(new ThreeSetDices());
+  const [diceRollsRival, setDiceRollsRival] = useState<Array<number>>([0, 0, 0]);
+  const [roleRival, setRoleRival] = useState<string>('なし');
+  const [allDiceRollsRival, setAllDiceRollsRival] = useState<Array<Array<number>>>([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+  const [allRolesRival, setAllRolesRival] = useState<Array<string>>(['なし', 'なし', 'なし']);
+  
   const onClickClear = (): void => {
     setPoint(1000);
+
     user.refreshPoint();
     setGainPoint(0);
     setDiceRolls([0, 0, 0]);
     setRole('なし');
     setAllDiceRolls([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
     setAllRoles(['なし', 'なし', 'なし']);
+
+    setDiceRollsRival([0,0,0]);
+    setRoleRival('なし');
+    setAllDiceRollsRival([[0,0,0],[0,0,0],[0,0,0]]);
+    setAllRolesRival(['なし','なし','なし']);
+
     alert('リセットしました');
   };
 
   const onClickPlay = () => {
+    // ユーザーのダイスを振る
     user.rollDices();
+    // ユーザーの一番強い役を取得
     const dices = user.getDices();
     const role = user.getRole();
     const roleStr: string = getRoleStr(role);
     setDiceRolls(dices);
     setRole(roleStr);
+    // ユーザーの全部のダイス・役を取得
     const allDiceSet = user.getAllDiceSet();
     console.log(allDiceSet);
-
     const newDiceRolls = allDiceSet.map(set => set.getDices());
     const newRoles = allDiceSet.map(set => getRoleStr(set.getRole()));
     setAllDiceRolls(newDiceRolls);
     setAllRoles(newRoles);
 
+    // ライバルのダイスを振る
     rival.rollDices();
+    // ライバルの一番強い役を取得
     const dicesRival = rival.getDices();
     const roleRival = rival.getRole();
     const roleRivalStr: string = getRoleStr(roleRival);
+    setDiceRollsRival(dicesRival);
+    setRoleRival(roleRivalStr);
+    // ライバルの全部のダイス・役を取得
+    const allDiceSetRival = rival.getAllDiceSet();
+    const newDiceRollsRival = allDiceSetRival.map(set => set.getDices());
+    const newRolesRival = allDiceSetRival.map(set => getRoleStr(set.getRole()));
+    setAllDiceRollsRival(newDiceRollsRival);
+    setAllRolesRival(newRolesRival);
 
     const resultRole = compareRole(role, roleRival);
     const resultRoleStr = getResultStr(resultRole);
@@ -122,8 +147,16 @@ export const App = () => {
       <DiceResult diceRolls={diceRolls} role={role} />
       <div>獲得したポイント：{gainPoint}</div>
       <br />
+      <div>■ライバル情報</div>
+      <DiceResult diceRolls={diceRollsRival} role={roleRival} />
+      <br />
       {allDiceRolls.map((diceRolls, index) => (
         <DiceResult key={index} diceRolls={diceRolls} role={allRoles[index]} />
+      ))}
+      <br />
+      <div>■ライバル情報</div>
+      {allDiceRollsRival.map((diceRolls, index) => (
+        <DiceResult key={index} diceRolls={diceRolls} role={allRolesRival[index]} />
       ))}
     </>
   );
