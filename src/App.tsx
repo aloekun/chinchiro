@@ -16,12 +16,8 @@ export const App = () => {
   const [gainPoint, setGainPoint] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<Array<number>>([0, 0, 0]);
   const [role, setRole] = useState<string>('なし');
-  const [diceRolls1, setDiceRolls1] = useState<Array<number>>([0, 0, 0]);
-  const [role1, setRole1] = useState<string>('なし');
-  const [diceRolls2, setDiceRolls2] = useState<Array<number>>([0, 0, 0]);
-  const [role2, setRole2] = useState<string>('なし');
-  const [diceRolls3, setDiceRolls3] = useState<Array<number>>([0, 0, 0]);
-  const [role3, setRole3] = useState<string>('なし');
+  const [allDiceRolls, setAllDiceRolls] = useState<Array<Array<number>>>([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+  const [allRoles, setAllRoles] = useState<Array<string>>(['なし', 'なし', 'なし']);
   const [inputPoint, setInputPoint] = useState<number>(0);
 
   const onClickClear = (): void => {
@@ -30,12 +26,8 @@ export const App = () => {
     setGainPoint(0);
     setDiceRolls([0, 0, 0]);
     setRole('なし');
-    setDiceRolls1([0, 0, 0]);
-    setRole1('なし');
-    setDiceRolls2([0, 0, 0]);
-    setRole2('なし');
-    setDiceRolls3([0, 0, 0]);
-    setRole3('なし');
+    setAllDiceRolls([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+    setAllRoles(['なし', 'なし', 'なし']);
     alert('リセットしました');
   };
 
@@ -48,18 +40,11 @@ export const App = () => {
     setRole(roleStr);
     const allDiceSet = user.getAllDiceSet();
     console.log(allDiceSet);
-    setDiceRolls1(allDiceSet[0].getDices());
-    setDiceRolls2(allDiceSet[1].getDices());
-    setDiceRolls3(allDiceSet[2].getDices());
-    const role1 = allDiceSet[0].getRole();
-    const role1Str = getRoleStr(role1);
-    setRole1(role1Str);
-    const role2 = allDiceSet[1].getRole();
-    const role2Str = getRoleStr(role2);
-    setRole2(role2Str);
-    const role3 = allDiceSet[2].getRole();
-    const role3Str = getRoleStr(role3);
-    setRole3(role3Str);
+
+    const newDiceRolls = allDiceSet.map(set => set.getDices());
+    const newRoles = allDiceSet.map(set => getRoleStr(set.getRole()));
+    setAllDiceRolls(newDiceRolls);
+    setAllRoles(newRoles);
 
     rival.rollDices();
     const dicesRival = rival.getDices();
@@ -84,7 +69,6 @@ export const App = () => {
     user.gainPoint(gainPoint);
     setGainPoint(resultPoint);
     setPoint(point + resultPoint);
-    // alert(`ダイスの目： ${dices.join(',')}, 役： ${rollStr}, 目： ${dice}\n gainPoint:${gainPoint}, decreasePoint:${decreasePoint}, resultPoint:${resultPoint}`);
   };
 
   // 消費ポイントの計算
@@ -138,9 +122,9 @@ export const App = () => {
       <DiceResult diceRolls={diceRolls} role={role} />
       <div>獲得したポイント：{gainPoint}</div>
       <br />
-      <DiceResult diceRolls={diceRolls1} role={role1} />
-      <DiceResult diceRolls={diceRolls2} role={role2} />
-      <DiceResult diceRolls={diceRolls3} role={role3} />
+      {allDiceRolls.map((diceRolls, index) => (
+        <DiceResult key={index} diceRolls={diceRolls} role={allRoles[index]} />
+      ))}
     </>
   );
 };
