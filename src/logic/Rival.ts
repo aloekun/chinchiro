@@ -1,13 +1,14 @@
 import { RoleEnum } from '../types/RoleEnum';
-import { DiceHandler } from './DiceHandler';
+import { IDices } from './IDices';
 import { OneSetDices } from './OneSetDices';
 
-export class Rival extends DiceHandler {
-    private dices: OneSetDices;
-    constructor() {
-        super();
-        this.dices = new OneSetDices();
-        this.dices.rollDices();
+export class Rival implements IDices {
+    private dices: IDices;
+    constructor(dices: IDices) {
+        if (dices == null) {
+            throw EvalError("not defined interface");
+        }
+        this.dices = dices;
     }
 
     public getDices(): number[] {
@@ -20,5 +21,9 @@ export class Rival extends DiceHandler {
 
     public rollDices() {
         this.dices.rollDices();
+    }
+
+    public getAllDiceSet(): OneSetDices[] {
+        return this.dices.getAllDiceSet();
     }
 }
