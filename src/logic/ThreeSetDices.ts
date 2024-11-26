@@ -1,11 +1,11 @@
 import { RoleEnum } from "../types/RoleEnum";
-import { IDices } from "./IDices";
+import { IDiceFuncs } from "./IDiceFuncs";
 import { OneSetDices } from "./OneSetDices";
 
 /**
  * ちんちろりん1回分のサイコロ3つの出目と役のセット
  */
-export class ThreeSetDices implements IDices {
+export class ThreeSetDices implements IDiceFuncs {
     private dices: number[];
     private role: number;
     private onlyOneNumber: number;

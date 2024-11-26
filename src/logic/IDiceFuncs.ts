@@ -1,7 +1,7 @@
 import { RoleEnum } from "../types/RoleEnum";
 import { OneSetDices } from "./OneSetDices";
 
-export interface IDices {
+export interface IDiceFuncs {
     getDices(): number[];
     getRole(): RoleEnum;
     rollDices(): void;

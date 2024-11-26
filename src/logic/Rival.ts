@@ -1,10 +1,10 @@
 import { RoleEnum } from '../types/RoleEnum';
-import { IDices } from './IDices';
+import { IDiceFuncs } from './IDiceFuncs';
 import { OneSetDices } from './OneSetDices';
 
-export class Rival implements IDices {
-    private dices: IDices;
-    constructor(dices: IDices) {
+export class Rival implements IDiceFuncs {
+    private dices: IDiceFuncs;
+    constructor(dices: IDiceFuncs) {
         if (dices == null) {
             throw EvalError("not defined interface");
         }

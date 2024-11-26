@@ -1,12 +1,12 @@
 import { rollDices } from "../components/DiceRoller";
 import { RoleEnum } from "../types/RoleEnum";
-import { IDices } from "./IDices";
+import { IDiceFuncs } from "./IDiceFuncs";
 import { ErrorJudge, judgeRole } from "./JudgeRole";
 
 /**
  * ちんちろりん1回分のサイコロ3つの出目と役のセット
  */
-export class OneSetDices implements IDices {
+export class OneSetDices implements IDiceFuncs {
     private dices: number[];
     private role: number;
     private onlyOneNumber: number;
