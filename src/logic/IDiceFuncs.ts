@@ -6,4 +6,5 @@ export interface IDiceFuncs {
     getRole(): RoleEnum;
     rollDices(): void;
     getAllDiceSet(): OneSetDices[];
+    getOnlyOneNumber(): number;
 }

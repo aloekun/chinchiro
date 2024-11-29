@@ -1,14 +1,14 @@
 import { RoleEnum } from "../types/RoleEnum";
 import { DiceHandler } from "./DiceHandler";
-import { IDiceFuncs } from "./IDiceFuncs";
 import { OneSetDices } from "./OneSetDices";
+import { ThreeSetDices } from "./ThreeSetDices";
 
 export class User extends DiceHandler {
     private pointDefault: number;
     private point: number;
-    private readonly dices: IDiceFuncs;
+    private dices: ThreeSetDices;
 
-    constructor(point: number, dices: IDiceFuncs) {
+    constructor(point: number, dices: ThreeSetDices) {
         super();
         this.point = point;
         this.pointDefault = point;

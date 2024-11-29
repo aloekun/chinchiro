@@ -11,15 +11,12 @@ export class ThreeSetDices implements IDiceFuncs {
     private onlyOneNumber: number;
     private setDicesList: OneSetDices[];
 
-    constructor() {
+    constructor(setDicesList: OneSetDices[]) {
         this.dices = [];
         this.role = RoleEnum.NONE;
         this.onlyOneNumber = 0;
 
-        this.setDicesList = [];
-        this.setDicesList.push(new OneSetDices());
-        this.setDicesList.push(new OneSetDices());
-        this.setDicesList.push(new OneSetDices());
+        this.setDicesList = setDicesList;
     }
 
     public getDices() {

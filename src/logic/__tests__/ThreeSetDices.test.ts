@@ -1,8 +1,9 @@
 import { RoleEnum } from "../../types/RoleEnum";
+import { OneSetDices } from "../OneSetDices";
 import { ThreeSetDices } from "../ThreeSetDices";
 
 test("サイコロ3つを振って、役が出る", () => {
-    const sut = new ThreeSetDices();
+    const sut = new ThreeSetDices([new OneSetDices(), new OneSetDices(), new OneSetDices()]);
 
     sut.rollDices();
 
