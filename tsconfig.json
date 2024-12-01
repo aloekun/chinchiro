@@ -8,5 +8,9 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "allowJs": true
-  }
+  },
+  "exclude": [
+    "eslint.config.mjs",
+    "jest.config.js"
+  ]
 }
