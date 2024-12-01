@@ -10,12 +10,29 @@ import { getResultStr } from './types/RollResult';
 import { ThreeSetDices } from './logic/ThreeSetDices';
 import { DiceResultTable } from './components/DiceResultTable';
 import { OneSetDices } from './logic/OneSetDices';
+import { OneDice } from './logic/OneDice';
+import { RollAlgoRand } from './logic/RollAlgoRand';
 
 export const App = () => {
   const [point, setPoint] = useState<number>(1000);
   const [inputPoint, setInputPoint] = useState<number>(0);
 
-  const user = new User(1000, new ThreeSetDices([new OneSetDices(), new OneSetDices(), new OneSetDices()]));
+  const user = new User(1000, new ThreeSetDices([
+    new OneSetDices([
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+    ]),
+    new OneSetDices([
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+    ]),
+    new OneSetDices([
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+  ])]));
   const [gainPoint, setGainPoint] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<Array<number>>([0, 0, 0]);
   const [role, setRole] = useState<string>('なし');
@@ -30,7 +47,23 @@ export const App = () => {
     'なし',
   ]);
 
-  const rival = new Rival(new ThreeSetDices([new OneSetDices(), new OneSetDices(), new OneSetDices()]));
+  const rival = new Rival(new ThreeSetDices([
+    new OneSetDices([
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+    ]),
+    new OneSetDices([
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+    ]),
+    new OneSetDices([
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+      new OneDice(new RollAlgoRand()),
+    ]),
+  ]));
   const [diceRollsRival, setDiceRollsRival] = useState<Array<number>>([
     0, 0, 0,
   ]);
