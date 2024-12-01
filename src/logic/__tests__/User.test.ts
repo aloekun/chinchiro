@@ -87,3 +87,35 @@ test('Userクラスをリフレッシュしたら初期値に戻る', () => {
   const point = sut.getNumber();
   expect(point).toBe(pointDefault);
 });
+
+test('ダイスセットで複数の「2つ一致、1つ残り」になったときに最も大きい数字のダイスセットを使う', () => {
+  const dices = new ThreeSetDices([
+    new OneSetDices([
+      new OneDice(new RollAlgoFixCheat(1)),
+      new OneDice(new RollAlgoFixCheat(3)),
+      new OneDice(new RollAlgoFixCheat(3)),
+    ]),
+    new OneSetDices([
+      new OneDice(new RollAlgoFixCheat(2)),
+      new OneDice(new RollAlgoFixCheat(2)),
+      new OneDice(new RollAlgoFixCheat(4)),
+    ]),
+    new OneSetDices([
+      new OneDice(new RollAlgoFixCheat(6)),
+      new OneDice(new RollAlgoFixCheat(6)),
+      new OneDice(new RollAlgoFixCheat(5)),
+    ]),
+  ]);
+  const sut = new User(1000, dices);
+
+  sut.rollDices();
+
+  const dicesUser = sut.getDices();
+  const roleUser = sut.getRole();
+  const roleUserStr = getRoleStr(roleUser);
+  const targetStr = getRoleStr(RoleEnum.ONLY_ONE_ROLL);
+  expect(dicesUser[0]).toBe(6);
+  expect(dicesUser[1]).toBe(6);
+  expect(dicesUser[2]).toBe(5);
+  expect(roleUserStr).toBe(targetStr);
+});
